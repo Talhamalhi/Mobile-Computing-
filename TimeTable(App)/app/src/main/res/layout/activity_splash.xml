@@ -21,8 +21,9 @@
         android:layout_width="227dp"
         android:layout_height="58dp"
         android:text="Timetable Manager"
-        android:textSize="24sp"
+        android:textSize="25dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="103dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="491dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
