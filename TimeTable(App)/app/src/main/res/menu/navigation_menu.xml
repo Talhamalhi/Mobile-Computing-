@@ -3,4 +3,24 @@
 <item
     android:id="@+id/nav_timetable"
     android:title="Timetable"/>
+
+    <item
+        android:id="@+id/nav_timetable"
+        android:title="Add event"/>
+
+    <item
+        android:id="@+id/nav_timetable"
+        android:title="Delete event"/>
+
+    <item
+        android:id="@+id/nav_timetable"
+        android:title="Event list"/>
+
+    <item
+        android:id="@+id/nav_timetable"
+        android:title="Reminders"/>
+
+    <item
+        android:id="@+id/nav_timetable"
+        android:title="Calendar"/>
 </menu>
