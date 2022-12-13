@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/nav_timetable"
-    android:title="Timetable"/>
+    <item
+        android:id="@+id/timetable"
+        android:title="Timetable" />
 
     <item
-        android:id="@+id/nav_timetable"
-        android:title="Add event"/>
+        android:id="@+id/add"
+        android:title="Add event" />
 
     <item
-        android:id="@+id/nav_timetable"
-        android:title="Delete event"/>
+        android:id="@+id/del"
+        android:title="Delete event" />
 
     <item
-        android:id="@+id/nav_timetable"
-        android:title="Event list"/>
+        android:id="@+id/elist"
+        android:title="Event list" />
 
     <item
-        android:id="@+id/nav_timetable"
-        android:title="Reminders"/>
+        android:id="@+id/remind"
+        android:title="Reminders" />
 
     <item
-        android:id="@+id/nav_timetable"
-        android:title="Calendar"/>
+        android:id="@+id/calendar"
+        android:title="Calendar" />
 </menu>

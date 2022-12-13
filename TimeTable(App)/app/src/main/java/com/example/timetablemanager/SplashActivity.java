@@ -14,12 +14,12 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Timer().scheduleAtFixedRate(new TimerTask() {
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
                 startActivity(intent);
             }
-        },3000,0);
+        },3000);
     }
 }
