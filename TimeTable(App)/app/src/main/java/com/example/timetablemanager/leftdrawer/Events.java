@@ -1,4 +1,4 @@
-package com.example.timetablemanager;
+package com.example.timetablemanager.leftdrawer;
 
 import android.os.Bundle;
 
@@ -8,16 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.timetablemanager.R;
+
 import kotlin.jvm.Synchronized;
 
-public class DeleteEvent extends Fragment {
+
+public class Events extends Fragment {
 
     //Making Singleton Object For class
-    private DeleteEvent(){}
-    private static DeleteEvent instance = null;
+    private Events(){}
+    private static Events instance = null;
     @Synchronized
-    public static DeleteEvent getInstance() {
-        if(instance == null) instance = new DeleteEvent();
+    public static Events getInstance() {
+        if(instance == null) instance = new Events();
         return instance;
     }
 
@@ -25,6 +28,6 @@ public class DeleteEvent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_delete_event, container, false);
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 }

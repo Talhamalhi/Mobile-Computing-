@@ -1,4 +1,4 @@
-package com.example.timetablemanager;
+package com.example.timetablemanager.leftdrawer;
 
 import android.os.Bundle;
 
@@ -8,17 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.timetablemanager.R;
+
 import kotlin.jvm.Synchronized;
 
 
-public class EventList extends Fragment {
+public class Calendar extends Fragment {
 
     //Making Singleton Object For class
-    private EventList(){}
-    private static EventList instance = null;
+    private Calendar(){}
+    private static Calendar instance = null;
     @Synchronized
-    public static EventList getInstance() {
-        if(instance == null) instance = new EventList();
+    public static Calendar getInstance() {
+        if(instance == null) instance = new Calendar();
         return instance;
     }
 
@@ -26,6 +28,6 @@ public class EventList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_list, container, false);
+        return inflater.inflate(R.layout.fragment_calendar, container, false);
     }
 }

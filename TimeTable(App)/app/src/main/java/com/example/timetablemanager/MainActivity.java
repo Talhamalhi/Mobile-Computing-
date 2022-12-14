@@ -11,6 +11,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.timetablemanager.leftdrawer.Calendar;
+import com.example.timetablemanager.leftdrawer.Events;
+import com.example.timetablemanager.leftdrawer.Reminders;
+import com.example.timetablemanager.leftdrawer.Timetable;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -23,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replaceFragments(Option1Fragment.getInstance());
+        replaceFragments(Timetable.getInstance());
         initViews();
         initDrawer();
     }
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDrawer() {
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -43,11 +47,7 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.timetable)
                 replaceFragments(Timetable.getInstance());
             else if (id == R.id.add)
-                replaceFragments(AddEvent.getInstance());
-            else if (id == R.id.del)
-                replaceFragments(DeleteEvent.getInstance());
-            else if (id == R.id.elist)
-                replaceFragments(EventList.getInstance());
+                replaceFragments(Events.getInstance());
             else if (id == R.id.remind)
                 replaceFragments(Reminders.getInstance());
             else if (id == R.id.calendar)
