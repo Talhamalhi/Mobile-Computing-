@@ -16,6 +16,7 @@ import com.example.timetablemanager.TimeTable_Adapter;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
 import kotlin.jvm.Synchronized;
 
 public class Timetable extends Fragment {
@@ -36,13 +37,10 @@ RecyclerView recyclerView;
 
 
     }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onViewCreated(view, savedInstanceState);
 
         ArrayList<String> animalNames = new ArrayList<>();
         animalNames.add("Horse");
@@ -57,6 +55,17 @@ RecyclerView recyclerView;
         TimeTable_Adapter adapter = new TimeTable_Adapter(getActivity(), animalNames);
 //        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+
+
+
         return rootView;
     }
 

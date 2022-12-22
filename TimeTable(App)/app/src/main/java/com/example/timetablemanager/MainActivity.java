@@ -17,6 +17,9 @@ import com.example.timetablemanager.leftdrawer.Reminders;
 import com.example.timetablemanager.leftdrawer.Timetable;
 import com.google.android.material.navigation.NavigationView;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 
 public class MainActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
@@ -27,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Realm.init(this);
+        String realmName = "TimeTable";
+        RealmConfiguration config = new RealmConfiguration.Builder().name(realmName).build();
+        Realm.getInstance(config);
+
+
         replaceFragments(Timetable.getInstance());
         initViews();
         initDrawer();
