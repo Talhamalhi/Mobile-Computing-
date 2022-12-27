@@ -8,16 +8,20 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.timetablemanager.model.TimeTableModel;
+
 import java.util.List;
+
+import io.realm.RealmList;
 
 public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.ViewHolder> {
 
-    private List<String> mData;
+    private RealmList<TimeTableModel> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public TimeTable_Adapter(Context context, List<String> data) {
+    public TimeTable_Adapter(Context context, RealmList<TimeTableModel> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -32,8 +36,11 @@ public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.Vi
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+
+        holder.name.setText(mData.get(position).getName());
+        holder.description.setText(mData.get(position).getDescription());
+        holder.day.setText(mData.get(position).getDay());
+        holder.time.setText(mData.get(position).getTime());
     }
 
     // total number of rows
@@ -45,11 +52,17 @@ public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.Vi
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        TextView name;
+        TextView description;
+        TextView day;
+        TextView time;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.title);
+            name = itemView.findViewById(R.id.title);
+            description = itemView.findViewById(R.id.description);
+            day = itemView.findViewById(R.id.day);
+            time = itemView.findViewById(R.id.time);
             itemView.setOnClickListener(this);
         }
 
@@ -57,11 +70,6 @@ public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.Vi
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
-    }
-
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
     }
 
     // allows clicks events to be caught

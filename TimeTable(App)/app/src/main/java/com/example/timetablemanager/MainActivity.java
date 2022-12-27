@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         Realm.init(this);
         String realmName = "TimeTable";
-        RealmConfiguration config = new RealmConfiguration.Builder().name(realmName).build();
-        Realm.getInstance(config);
+        RealmConfiguration config = new RealmConfiguration.Builder().allowWritesOnUiThread(false).name(realmName).build();
+        Realm.setDefaultConfiguration(config);
 
 
         replaceFragments(Timetable.getInstance());

@@ -1,6 +1,6 @@
 package com.example.timetablemanager.leftdrawer;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,22 +11,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.timetablemanager.AddTimeTable;
 import com.example.timetablemanager.R;
 import com.example.timetablemanager.TimeTable_Adapter;
+import com.example.timetablemanager.model.TimeTableModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
+import io.realm.RealmList;
 import kotlin.jvm.Synchronized;
 
 public class Timetable extends Fragment {
-RecyclerView recyclerView;
+    RecyclerView recyclerView;
+
     //Making Singleton Object For class
-    private Timetable(){}
+    private Timetable() {
+    }
+
     private static Timetable instance = null;
+    FloatingActionButton addTimetable;
+
     @Synchronized
     public static Timetable getInstance() {
-        if(instance == null) instance = new Timetable();
+        if (instance == null) instance = new Timetable();
         return instance;
     }
 
@@ -37,33 +45,36 @@ RecyclerView recyclerView;
 
 
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
 
-//        recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
-        // set up the RecyclerView
+        RealmList<TimeTableModel> realmList = new RealmList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        TimeTable_Adapter adapter = new TimeTable_Adapter(getActivity(), animalNames);
+        TimeTable_Adapter adapter = new TimeTable_Adapter(getActivity(), realmList);
 //        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+        addTimetable.setOnClickListener(new
+                                                View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        Intent intent = new Intent(getActivity(), AddTimeTable.class);
+                                                        startActivity(intent);
+                                                    }
+                                                });
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-
+        addTimetable = (FloatingActionButton) rootView.findViewById(R.id.add_timetable);
 
 
         return rootView;
