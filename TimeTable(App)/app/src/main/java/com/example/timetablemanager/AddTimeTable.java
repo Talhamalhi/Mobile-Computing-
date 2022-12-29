@@ -25,28 +25,24 @@ public class AddTimeTable extends AppCompatActivity {
         EditText dateTime = (EditText) findViewById(R.id.date_time);
         Button add = (Button)findViewById(R.id.add_timetable);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         add.setOnClickListener(view -> {
-            realm.executeTransactionAsync(realm -> {
-                //create task
-                realm.beginTransaction();
-                TimeTableModel timeTableModel = new TimeTableModel();
-                timeTableModel.setName("Hello Talha");
-                timeTableModel.setDay("Talha Day");
-                timeTableModel.setDate("Date here");
-                timeTableModel.setDescription("Pdf reader");
-                realm.beginTransaction();
-                realm.copyFromRealm(timeTableModel);
+            realm.beginTransaction();
+            TimeTableModel timeTableModel = new TimeTableModel();
 
-            });
+            Number newId = realm.where(TimeTableModel.class).max("id");
+            if(newId != null)
+            timeTableModel.setId(newId.intValue()+1);
+            else
+                timeTableModel.setId(1);
 
-//            Realm.getDefaultInstance().executeTransactionAsync(realm -> realm.copyFromRealm(timeTableModel));
-
+            timeTableModel.setName(name.getText().toString());
+            timeTableModel.setDescription(description.getText().toString());
+            timeTableModel.setDay(day.getText().toString());
+            timeTableModel.setDate(dateTime.getText().toString());
+            realm.copyToRealmOrUpdate(timeTableModel);
+            realm.commitTransaction();
+            finish();
         });
-
-
-
-
     }
 
     @Override

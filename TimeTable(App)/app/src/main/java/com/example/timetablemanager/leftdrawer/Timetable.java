@@ -18,13 +18,15 @@ import com.example.timetablemanager.model.TimeTableModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 import kotlin.jvm.Synchronized;
 
 public class Timetable extends Fragment {
     RecyclerView recyclerView;
-
     //Making Singleton Object For class
     private Timetable() {
     }
@@ -52,25 +54,26 @@ public class Timetable extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        RealmList<TimeTableModel> realmList = new RealmList<>();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        List<TimeTableModel> realmList = Realm.getDefaultInstance().where(TimeTableModel.class).findAll();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         TimeTable_Adapter adapter = new TimeTable_Adapter(getActivity(), realmList);
-//        adapter.setClickListener(this);
+
         recyclerView.setAdapter(adapter);
-        addTimetable.setOnClickListener(new
-                                                View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View view) {
-                                                        Intent intent = new Intent(getActivity(), AddTimeTable.class);
-                                                        startActivity(intent);
-                                                    }
-                                                });
+        addTimetable.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), AddTimeTable.class);
+            startActivity(intent);
+
+        });
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);

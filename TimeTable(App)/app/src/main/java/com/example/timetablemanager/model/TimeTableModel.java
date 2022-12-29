@@ -5,18 +5,18 @@ import io.realm.annotations.PrimaryKey;
 
 public class TimeTableModel extends RealmObject {
     @PrimaryKey
-    private String id;
+    private int id;
     private String name ;
     private String description ;
     private String day ;
     private String time ;
     private String date ;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

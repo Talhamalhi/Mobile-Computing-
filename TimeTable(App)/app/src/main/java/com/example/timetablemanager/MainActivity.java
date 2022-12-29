@@ -32,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Realm.init(this);
-        String realmName = "TimeTable";
-        RealmConfiguration config = new RealmConfiguration.Builder().allowWritesOnUiThread(false).name(realmName).build();
-        Realm.setDefaultConfiguration(config);
-
 
         replaceFragments(Timetable.getInstance());
         initViews();

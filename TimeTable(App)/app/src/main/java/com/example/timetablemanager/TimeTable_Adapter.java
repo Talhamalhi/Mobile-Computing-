@@ -12,16 +12,17 @@ import com.example.timetablemanager.model.TimeTableModel;
 
 import java.util.List;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 
 public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.ViewHolder> {
-
-    private RealmList<TimeTableModel> mData;
+    Realm realm = Realm.getDefaultInstance();
+    private List<TimeTableModel> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public TimeTable_Adapter(Context context, RealmList<TimeTableModel> data) {
+    public TimeTable_Adapter(Context context, List<TimeTableModel> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -41,6 +42,17 @@ public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.Vi
         holder.description.setText(mData.get(position).getDescription());
         holder.day.setText(mData.get(position).getDay());
         holder.time.setText(mData.get(position).getTime());
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                realm.beginTransaction();
+                TimeTableModel timeTableModel = realm.where(TimeTableModel.class)
+                        .equalTo("id", mData.get(position).getId()).findFirst();
+                timeTableModel.deleteFromRealm();
+                realm.commitTransaction();
+
+            }
+        });
     }
 
     // total number of rows
@@ -56,6 +68,7 @@ public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.Vi
         TextView description;
         TextView day;
         TextView time;
+        TextView deleteBtn;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -63,7 +76,8 @@ public class TimeTable_Adapter extends RecyclerView.Adapter<TimeTable_Adapter.Vi
             description = itemView.findViewById(R.id.description);
             day = itemView.findViewById(R.id.day);
             time = itemView.findViewById(R.id.time);
-            itemView.setOnClickListener(this);
+            deleteBtn = itemView.findViewById(R.id.del_btn);
+
         }
 
         @Override
