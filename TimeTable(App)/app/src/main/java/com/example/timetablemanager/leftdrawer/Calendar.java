@@ -12,7 +12,6 @@ import com.example.timetablemanager.R;
 
 import kotlin.jvm.Synchronized;
 
-
 public class Calendar extends Fragment {
 
     //Making Singleton Object For class

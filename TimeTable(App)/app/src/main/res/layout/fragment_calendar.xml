@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".leftdrawer.Timetable">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="calender Fragment"
-        android:layout_centerInParent="true"
-        android:textSize="25dp"
-        android:textColor="@color/black"
 
-        />
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:dateTextAppearance="@style/TextAppearance.AppCompat.Large"
+        android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
 
 </RelativeLayout>
