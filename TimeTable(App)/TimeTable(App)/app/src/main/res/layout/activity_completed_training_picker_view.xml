@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:orientation="vertical" android:gravity="bottom" android:layout_gravity="bottom" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="match_parent" android:background="#33bbac">
+
+    <TextView android:gravity="left" android:layout_gravity="left" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Cancel" android:textColor="@color/customwhite"  android:layout_weight="0.5" android:padding="10dp" android:textSize="20dp" android:id="@+id/textViewCancel"/>
+
+    <TextView android:gravity="right" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Done" android:textColor="@color/customwhite"  android:layout_weight="0.5" android:padding="10dp" android:textSize="20dp" android:id="@+id/textViewDone" android:textStyle="bold"/>
+
+</LinearLayout>
+
+
+    <LinearLayout android:orientation="horizontal" android:gravity="center" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="match_parent" android:background="@color/white">
+
+    <NumberPicker android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/picker_status"/>
+
+</LinearLayout>
+
+</LinearLayout>
